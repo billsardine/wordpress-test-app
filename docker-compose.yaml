@@ -1,0 +1,30 @@
+version: "3"
+services:
+  #MariaDB Database image
+  mariadb:
+    build:
+      context: mariadb
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wp_user
+      MYSQL_PASSWORD: wordpress
+    ports:
+      - "3306:3306"
+
+  wordpress:
+    build:
+      context: mariadb
+    depends_on:
+      - mariadb
+    image: wordpress
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: mariadb:3306
+      WORDPRESS_DB_USER: wp_user
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress

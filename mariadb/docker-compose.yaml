@@ -1,0 +1,13 @@
+version: "3"
+services:
+  mariadb:
+    build: .
+    image: mariadb
+    network_mode: "host"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wp_user
+      MYSQL_PASSWORD: wordpress
+
