@@ -1,9 +1,9 @@
 version: "3"
 services:
   #MariaDB Database image
-  mariadb:
+  wp-db:
     build:
-      context: mariadb
+      context: wp-db
     image: mariadb
     restart: always
     environment:
@@ -14,17 +14,47 @@ services:
     ports:
       - "3306:3306"
 
-  wordpress:
+  wp1-web:
     build:
-      context: mariadb
+      context: wp1-web
     depends_on:
-      - mariadb
+      - wp-db
     image: wordpress
     restart: always
     ports:
-      - "8000:80"
+      - "8080:80"
     environment:
-      WORDPRESS_DB_HOST: mariadb:3306
+      WORDPRESS_DB_HOST: wp-db:3306
+      WORDPRESS_DB_USER: wp_user
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+
+  wp2-web:
+    build:
+      context: wp2-web
+    depends_on:
+      - wp-db
+    image: wordpress
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      WORDPRESS_DB_HOST: wp-db:3306
+      WORDPRESS_DB_USER: wp_user
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+
+  nginx:
+    build:
+      context: nginx
+    depends_on:
+      - wp-db
+    image: nginx:1.20.1
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      WORDPRESS_DB_HOST: wp-db:3306
       WORDPRESS_DB_USER: wp_user
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress

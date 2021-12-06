@@ -1,9 +1,11 @@
 version: "3"
 services:
-  mariadb:
+  wp-db:
     build: .
     image: mariadb
     network_mode: "host"
+#    ports:
+#      - "3306:3306"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: wordpress
