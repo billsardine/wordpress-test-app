@@ -1,6 +1,7 @@
 version: "3"
 services:
   wp-web-lb:
+    build: .
     image: nginx:1.20.1
     restart: always
     network_mode: "host"
