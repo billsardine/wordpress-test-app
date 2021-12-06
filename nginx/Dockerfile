@@ -1,8 +1,5 @@
-FROM wordpress
+FROM nginx:1.20.1
 
-VOLUME /Data
+EXPOSE 80
 
-ENV   WORDPRESS_DB_HOST=mariadb:3306 \
-      WORDPRESS_DB_USER=wp_user \
-      WORDPRESS_DB_PASSWORD=wordpress \
-      WORDPRESS_DB_NAME=wordpress
+COPY default.conf.template /etc/nginx/conf.d/default.conf.template
