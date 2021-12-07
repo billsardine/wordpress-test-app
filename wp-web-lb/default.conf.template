@@ -27,7 +27,7 @@
 events { }
 
 http {
-    upstream myapp1 {
+    upstream wp-web-lb {
         server wp1-web;
         server wp2-web;
     }
@@ -36,7 +36,7 @@ http {
         listen 80;
 
         location / {
-            proxy_pass http://myapp1;
+            proxy_pass http://wp-web-lb;
         }
     }
 }
