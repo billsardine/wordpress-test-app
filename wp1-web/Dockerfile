@@ -7,8 +7,8 @@ ENV   WORDPRESS_DB_HOST=wp-db:3306 \
       WORDPRESS_DB_PASSWORD=wordpress \
       WORDPRESS_DB_NAME=wordpress
 
-COPY small-app.py /usr/lib/cgi-bin/small-app.py
-COPY small-app.py /usr/lib/cgi-bin/testpage.py
+COPY ./small-app.py /usr/lib/cgi-bin/small-app.py
+COPY ./small-app.py /usr/lib/cgi-bin/testpage.py
 RUN chmod +x /usr/lib/cgi-bin/*.py
 
 RUN apt-get update && apt-get -y install python3
