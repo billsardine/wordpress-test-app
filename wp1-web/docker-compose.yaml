@@ -1,6 +1,8 @@
 version: "3"
 services:
   wp1-web:
+    build:
+      context: .
     image: wordpress
     restart: always
     network_mode: "host"
