@@ -16,8 +16,8 @@ cursor.execute(select_user)
 result = cursor.fetchall()
 
 print("Content-type:text/html\n\n")
-print("<head><title>Employee Database</title></head>\n")
+print("<head><title>Employee Database Dump Tool</title></head>\n")
 print("<body>\n")
-print("<h1>Employee Database</h1>\n")
+print("<h1>Employee Database Dump Tool</h1>\n")
 print(tabulate(result, tablefmt="html"))
 
