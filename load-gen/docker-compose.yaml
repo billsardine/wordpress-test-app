@@ -1,0 +1,10 @@
+version: "3"
+services:
+  loag-gen:
+    build: .
+    image: python:3
+    restart: always
+    network_mode: "host"
+#    ports:
+#      - "8000:80"
+
