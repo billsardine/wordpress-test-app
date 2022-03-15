@@ -3,7 +3,7 @@ services:
   loag-gen:
     build: .
     image: python:3
-    restart: always
+#    restart: always
     network_mode: "host"
 #    ports:
 #      - "8000:80"
